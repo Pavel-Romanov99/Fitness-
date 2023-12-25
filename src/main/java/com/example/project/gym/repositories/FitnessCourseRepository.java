@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface FitnessCourseRepository extends JpaRepository<FitnessCourse, Long> {
@@ -13,5 +14,5 @@ public interface FitnessCourseRepository extends JpaRepository<FitnessCourse, Lo
     @Override
     List<FitnessCourse> findAll();
 
-    FitnessCourse findByCourseId(int courseId);
+    Optional<FitnessCourse> findByCourseId(int courseId);
 }

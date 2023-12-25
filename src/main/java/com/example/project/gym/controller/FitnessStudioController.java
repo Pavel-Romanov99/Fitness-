@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/studios")
+@CrossOrigin(origins = "http://localhost:3000")
 public class FitnessStudioController {
 
     private final FitnessServiceImpl fitnessService;

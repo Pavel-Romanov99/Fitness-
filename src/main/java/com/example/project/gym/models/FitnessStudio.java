@@ -15,6 +15,7 @@ public class FitnessStudio {
     private String studioName;
     private String address;
     private Category category;
+    private String description;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(
             name = "studio_id",

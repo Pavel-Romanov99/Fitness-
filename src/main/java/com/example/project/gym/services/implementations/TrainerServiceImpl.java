@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 @Slf4j
@@ -20,14 +22,14 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public void addTrainer(int courseId, Trainer trainer) {
-        try{
-            FitnessCourse byId = fitnessCourseRepository.findByCourseId(courseId);
+            Optional<FitnessCourse> byId = fitnessCourseRepository.findByCourseId(courseId);
 
-            trainer.getCourses().add(byId);
-            repository.save(trainer);
-        }
-        catch(Exception e){
-            log.error("Could not find course!");
-        }
+            if(byId.isPresent()){
+                trainer.getCourses().add(byId.get());
+                repository.save(trainer);
+            }
+            else {
+                throw new RuntimeException("Course not found");
+            }
     }
 }
