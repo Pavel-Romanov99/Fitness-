@@ -19,7 +19,7 @@ public class FitnessCourseServiceImpl implements FitnessCourseService {
     private final FitnessCourseRepository repository;
 
     public List<FitnessCourse> getStudioCourses(int studioName) {
-        return jdbcTemplate.query(String.format("SELECT * FROM fitness_course WHERE FITNESS_STUDIO_ID = %s", studioName) ,new BeanPropertyRowMapper<>(FitnessCourse.class));
+        return jdbcTemplate.query(String.format("SELECT * FROM fitness_course WHERE FITNESS_STUDIO_ID = %s", studioName) , new BeanPropertyRowMapper<>(FitnessCourse.class));
     }
 
     public List<FitnessCourse> getCourses() {
