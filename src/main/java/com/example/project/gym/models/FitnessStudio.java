@@ -7,19 +7,22 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "studios")
 @Data
 public class FitnessStudio {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "studio_id")
     private int studioId;
+
     private String studioName;
     private String address;
-    private Category category;
     private String description;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(
             name = "studio_id",
-            referencedColumnName = "studioId"
+            referencedColumnName = "studio_id"
     )
     private List<FitnessCourse> courses;
 }

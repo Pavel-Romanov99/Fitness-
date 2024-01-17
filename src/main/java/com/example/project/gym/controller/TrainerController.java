@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/trainer")
 @RequiredArgsConstructor
@@ -13,7 +15,13 @@ import org.springframework.web.bind.annotation.*;
 public class TrainerController {
     private final TrainerService trainerService;
 
-    @PostMapping("/create/{courseId}")
+
+    @GetMapping
+    public List<Trainer> getTrainers() {
+        return trainerService.getTrainers();
+    }
+
+    @PostMapping("/{courseId}")
     public void addTrainer(@PathVariable int courseId, @RequestBody Trainer trainer) {
         try{
             trainerService.addTrainer(courseId, trainer);
@@ -22,4 +30,8 @@ public class TrainerController {
             log.error(e.getMessage());
         }
     }
+
+
+
+
 }
