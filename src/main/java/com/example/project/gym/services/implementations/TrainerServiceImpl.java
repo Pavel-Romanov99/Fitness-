@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,6 +20,11 @@ public class TrainerServiceImpl implements TrainerService {
     private final TrainerRepository repository;
 
     private final FitnessCourseRepository fitnessCourseRepository;
+
+    @Override
+    public List<Trainer> getTrainers() {
+        return repository.findAll();
+    }
 
     @Override
     public void addTrainer(int courseId, Trainer trainer) {

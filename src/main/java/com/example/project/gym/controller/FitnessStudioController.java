@@ -3,6 +3,7 @@ package com.example.project.gym.controller;
 import com.example.project.gym.models.FitnessCourse;
 import com.example.project.gym.models.FitnessStudio;
 import com.example.project.gym.services.implementations.FitnessServiceImpl;
+import com.example.project.gym.services.interfaces.FitnessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +16,10 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class FitnessStudioController {
 
-    private final FitnessServiceImpl fitnessService;
+    private final FitnessService fitnessService;
 
     @Autowired
-    public FitnessStudioController(FitnessServiceImpl fitnessService) {
+    public FitnessStudioController(FitnessService fitnessService) {
         this.fitnessService = fitnessService;
     }
 
@@ -27,13 +28,13 @@ public class FitnessStudioController {
         return fitnessService.getStudios();
     }
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<String> createFitnessStudio(@RequestBody FitnessStudio fitnessStudio) {
         fitnessService.createStudio(fitnessStudio);
         return new ResponseEntity<>("Gym created successfully", HttpStatus.CREATED);
     }
 
-    @PostMapping("/create/{studioId}")
+    @PostMapping("/{studioId}")
     public void createCourse(@PathVariable int studioId, @RequestBody FitnessCourse course) {
         fitnessService.createCourse(studioId, course);
     }
