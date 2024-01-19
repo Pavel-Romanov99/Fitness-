@@ -15,8 +15,12 @@ public class Trainer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "trainer_id")
     private int trainerId;
+
     private String name;
+
+    @Column(name = "mobile_number")
     private String mobileNumber;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "courses_trainers",
